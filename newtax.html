@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="font-awesome.min.css">
+  <link rel="stylesheet" href="bulma.css">
+  <title>TaxComp</title>
+</head>
+<body onload="HideResult()">
+
+  <div class="container">
+
+    <!-- NAVBAR -->
+   <div class="block">
+
+      <section class="hero is-info">
+        <div class="hero-body">
+          <div class="container">
+      		<nav class="nav">
+        			<div class="nav-left">
+          			<a href="index.html" class="nav-item is-active">
+            			<p class="title">TaxComp<span class="tag is-success is-medium">my tax made easy</span></p>
+          			</a>
+        			</div>
+
+
+        			<div class="nav-right nav-menu">
+          			<a href="index.html" class="nav-item">Home</a>
+          			<a href="#" class="nav-item">About Us</a>
+          			<a href="#" class="nav-item">Contact</a>
+        			</div>
+      		</nav>
+    		</div>
+    	</div>
+   </section>
+  </div>
+
+	<div class="tile is-ancestor">
+
+  		<div class="tile is-3">
+
+    		<!-- SIDE MENU -->
+      	<aside class="menu">
+
+        		<p class="menu-label">
+          		Choose method
+        		</p>
+        		<ul class="menu-list">
+          		<li><a href="origtax.html">Original</a></li>
+          		<li><a class="is-active" href="newtax.html">New</a></li>
+        		</ul>
+
+      	</aside>
+  	  </div>
+
+      <div class="tile is-3 box">
+        <div class="container">
+          <form>
+            <div class="field">
+              <label class="label">Gross Yearly</label>
+              <input type="text" class="input" id="GrossAmt1" name="TextBox1" placeholder="Enter Yearly Gross Income">
+            </div>
+
+            <div class="field">
+              <label class="label">Total Paid Monthly</label>
+              <input type="text" class="input is-success" id="GrossAmt2" name="TextBox6" placeholder="Enter Total Paid Monthly">
+            </div>
+
+            <div class="field">
+              <label class="label">Total Paid Quarterly</label>
+              <input type="text" class="input is-danger" id="GrossAmt3" name="TextBox7" placeholder="Enter Total Paid Quarterly">
+            </div>
+          </form>
+          <hr>
+
+          <div class="block">
+            <input class="button is-success is-large is-rounded" type="button" name="clickbtn" value="Compute!" onclick="CompNewTax()">
+          </div>
+        </div>
+
+     </div>
+
+     <div class="tile is-2">
+       <div class="block">
+       </div>
+     </div>
+
+     <div class="tile is-6" id="results">
+       <div class="block">
+           <div class="box">
+             <h1 class="title is-large">Results</h1>
+             <p id="due1"></p>
+           </div>
+       </div>
+     </div>
+
+   </div>
+  </div>
+  </body>
+</html>
+
+<script type="text/javascript">
+
+function HideResult() {
+  document.getElementById("results").style.visibility = "hidden";
+}
+
+function CompNewTax() {
+
+	var gross_amount1 = parseInt(document.getElementById("GrossAmt1").value);
+	var gross_amount2 = parseInt(document.getElementById("GrossAmt2").value);
+	var gross_amount3 = parseInt(document.getElementById("GrossAmt3").value);
+	var taxable1, taxable2, taxable3;
+	var taxdue1, taxdue2, taxdue3;
+
+	taxable1 = (gross_amount1 * 0.6);
+	taxable11 = taxable1 * 0.03;
+  taxable12 = (gross_amount2 > gross_amount3 ? gross_amount2 : gross_amount3);
+
+	taxdue1 = taxable12 - taxable11;
+
+	document.getElementById("results").style.visibility = "visible";
+
+	document.getElementById("due1").innerHTML = "Tax Due = " + taxdue1;
+
+}
+
+
+ </script>
